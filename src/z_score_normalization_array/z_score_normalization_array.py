@@ -1,7 +1,7 @@
 class ZScoreNormalizationArray:
     def __init__(self):
-        self.mean = None
-        self.std = None
+        self.mean = 0
+        self.std = 0
 
     def __compute_mean(self, data: list):
         """
@@ -13,6 +13,7 @@ class ZScoreNormalizationArray:
         Returns:
             mean of the input data
         """
+        self.mean = 0
         for i in range(len(data)):
             self.mean += data[i]
         self.mean /= len(data)
@@ -27,6 +28,7 @@ class ZScoreNormalizationArray:
         Returns:
             standard deviation of the input data
         """
+        self.std = 0
         for i in range(len(data)):
             self.std += (data[i] - self.mean) ** 2
         self.std = (self.std / len(data)) ** 0.5
@@ -45,6 +47,8 @@ class ZScoreNormalizationArray:
         self.__compute_mean(data=data)
         self.__compute_std(data=data)
 
+        print(self.mean)
+        print(self.std)
         normalized_data = []
         for i in range(len(data)):
             normalized_data.append((data[i] - self.mean) / self.std)
