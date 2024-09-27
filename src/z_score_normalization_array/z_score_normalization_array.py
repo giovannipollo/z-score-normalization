@@ -47,8 +47,6 @@ class ZScoreNormalizationArray:
         self.__compute_mean(data=data)
         self.__compute_std(data=data)
 
-        print(self.mean)
-        print(self.std)
         normalized_data = []
         for i in range(len(data)):
             normalized_data.append((data[i] - self.mean) / self.std)
